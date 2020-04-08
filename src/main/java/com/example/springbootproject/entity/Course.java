@@ -1,5 +1,6 @@
 package com.example.springbootproject.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +30,6 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<Elective> electives;
+    @ManyToOne
+    private Tutor tutor;
 }

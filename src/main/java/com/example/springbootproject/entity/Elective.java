@@ -18,7 +18,6 @@ public class Elective {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String detail;
     private Float grade;
     @Column(columnDefinition = "timestamp default current_timestamp",
             insertable = false,

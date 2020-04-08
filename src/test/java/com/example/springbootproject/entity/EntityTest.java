@@ -42,7 +42,7 @@ public class EntityTest {
         studentRepository.save(student02);
 
         Tutor tutor = new Tutor();
-        tutor.setName("波波老师");
+        tutor.setName("王波老师");
         tutorRepository.save(tutor);
 
         Course course = new Course();

@@ -15,8 +15,9 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int studentID;
-    private String name;
+    @OneToOne
+    @MapsId
+    private User user;
     private Boolean isSelectRoot;//能否被选中
     @Column(columnDefinition = "timestamp default current_timestamp",
             insertable = false,

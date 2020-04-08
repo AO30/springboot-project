@@ -27,4 +27,6 @@ public class Direction {
 
     @OneToMany(mappedBy = "direction")
     private List<DirectionElective> directionElectives;
+    @ManyToOne
+    private Tutor tutor;
 }
