@@ -1,5 +1,6 @@
 package com.example.springbootproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,13 +13,21 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @AllArgsConstructor
+@JsonIgnoreProperties({"electives"})
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
-    private float minGrade;//课程最低分
-    private float weight;//课程权重
+    private Float value;//课程权值
+    private Float minGrade;//课程最低分
+
+    @OneToMany(mappedBy = "course")
+    private List<CourseElective> courseElectives;
+    @ManyToOne
+    private Teacher teacher;
+
+
     @Column(columnDefinition = "timestamp default current_timestamp",
             insertable = false,
             updatable = false)
@@ -27,9 +36,4 @@ public class Course {
             insertable = false,
             updatable = false)
     private LocalDateTime updateTime;
-
-    @OneToMany(mappedBy = "course")
-    private List<Elective> electives;
-    @ManyToOne
-    private Tutor tutor;
 }

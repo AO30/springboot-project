@@ -6,11 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-/**
- * 方向选择表
- */
-@Data
 @Entity
+@Data
 @NoArgsConstructor
 public class DirectionElective {
     @Id
@@ -25,7 +22,6 @@ public class DirectionElective {
             insertable = false,
             updatable = false)
     private LocalDateTime updateTime;
-
     @ManyToOne
     private Student student;
     @ManyToOne

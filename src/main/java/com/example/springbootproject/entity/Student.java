@@ -1,6 +1,7 @@
 package com.example.springbootproject.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,14 +12,24 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"courseElectives","directionElectives"})
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @OneToOne
+    private Integer id;
+    private Boolean isSelectRoot;//是否在老师选择范围内
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @MapsId
     private User user;
-    private Boolean isSelectRoot;//能否被选中
+    @ManyToOne
+    private Teacher teacher;//如果这个外键不为空则为被选中
+    @OneToMany(mappedBy = "student")
+    private List<CourseElective> courseElectives;
+    @OneToMany(mappedBy = "student")
+    private List<DirectionElective> directionElectives;
+
+
+
     @Column(columnDefinition = "timestamp default current_timestamp",
             insertable = false,
             updatable = false)
@@ -28,10 +39,5 @@ public class Student {
             updatable = false)
     private LocalDateTime updateTime;
 
-    @ManyToOne
-    private Tutor tutor;//外键不为空则为被选中
-    @OneToMany(mappedBy = "student")
-    private List<Elective> electives;
-    @OneToMany(mappedBy = "student")
-    private List<DirectionElective> directionElectives;
+
 }

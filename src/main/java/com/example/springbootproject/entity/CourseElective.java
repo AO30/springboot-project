@@ -1,6 +1,7 @@
 package com.example.springbootproject.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,10 +15,12 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Entity
-public class Elective {
+@AllArgsConstructor
+public class CourseElective {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String detail;
     private Float grade;
     @Column(columnDefinition = "timestamp default current_timestamp",
             insertable = false,

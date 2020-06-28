@@ -16,8 +16,7 @@ public class BaseRepositoryImpl<T,ID> extends SimpleJpaRepository<T,ID> implemen
     }
 
     @Override
-    public T refresh(T t){
+    public void refresh(T t){
         manager.refresh(t);
-        return t;
     }
 }

@@ -13,9 +13,8 @@ import java.util.List;
 public class Direction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     private String name;
-    private Float weight;//方向权值
     @Column(columnDefinition = "timestamp default current_timestamp",
             insertable = false,
             updatable = false)
@@ -28,5 +27,5 @@ public class Direction {
     @OneToMany(mappedBy = "direction")
     private List<DirectionElective> directionElectives;
     @ManyToOne
-    private Tutor tutor;
+    private Teacher teacher;
 }
